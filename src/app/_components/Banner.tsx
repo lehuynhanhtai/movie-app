@@ -11,9 +11,19 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useCarousel from "@/hooks/useCarousel";
+import instance from "../../axios";
 
 export function Banner() {
   const { setApi } = useCarousel({ autoSlide: true });
+
+  React.useEffect(() => {
+    const fetchTrending = async () => {
+      const response = await instance.get("/trending/all/week?language=vi");
+      console.log(response.data);
+    };
+
+    fetchTrending();
+  }, []);
 
   return (
     <section className="relative">
