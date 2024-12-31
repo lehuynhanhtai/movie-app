@@ -67,7 +67,7 @@ const movieCategories = [
 
 function HotMovie() {
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16">
       <div className="container mx-auto px-4">
         {movieCategories.map((category, index) => (
           <div key={index} className="mb-16">
