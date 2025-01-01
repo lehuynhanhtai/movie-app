@@ -79,7 +79,7 @@ function Footer() {
             />
           </div>
 
-          <div className="flex gap-4 hover:cursor-pointer">
+          <div className="flex flex-wrap gap-4 hover:cursor-pointer">
             <img
               src="https://www.svgrepo.com/show/303114/facebook-3-logo.svg"
               width="30"
