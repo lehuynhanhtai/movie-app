@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layouts/header";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Footer from "@/components/layouts/footer";
-import axios from "../axios";
+import { fetchCategories, fetchCountries } from "@/fetch";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,18 +20,6 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Chill Phim",
   description: "Xem phim miễn phí cùng Myth",
-};
-
-const fetchCategories = async () => {
-  const response = await axios.get("/api/the-loai");
-  const data = await response.data;
-  return data;
-};
-
-const fetchCountries = async () => {
-  const response = await axios.get("/api/quoc-gia");
-  const data = await response.data;
-  return data;
 };
 
 export default async function RootLayout({

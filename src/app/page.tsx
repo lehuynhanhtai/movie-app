@@ -1,13 +1,23 @@
+import { fetchUpcomingMovies } from "@/fetch";
 import { Banner } from "./_components/Banner";
 import HotMovie from "./_components/HotMovie";
 import LeftSide from "./_components/LeftSide";
 import RightSide from "./_components/RightSide";
 
-export default function Home() {
+export default async function Home() {
+  const upcomingMovies = await fetchUpcomingMovies({
+    params: {
+      page: 1,
+      category: "",
+      country: "",
+      year: "",
+    },
+  });
+
   return (
     <div>
       <Banner />
-      <HotMovie />
+      <HotMovie upcomingMovies={upcomingMovies} />
       <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <LeftSide className="lg:col-span-2" />
         <RightSide className="lg:col-span-1" />
