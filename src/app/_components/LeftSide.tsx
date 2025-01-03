@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { fetchHoatHinh, fetchPhimBo, fetchPhimLe, fetchTvShows } from "@/fetch";
 import { ChevronRight, Star, TimerIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface LeftSideProps {
@@ -72,12 +73,14 @@ const PhimLe = async () => {
                       {movie.tmdb.vote_average}
                     </span>
                   </div>
-                  <Button
-                    size="sm"
-                    className="bg-yellow-500 text-black hover:bg-yellow-600"
-                  >
-                    Xem Thêm
-                  </Button>
+                  <Link href={`/chi-tiet/${movie.slug}`}>
+                    <Button
+                      size="sm"
+                      className="bg-yellow-500 text-black hover:bg-yellow-600"
+                    >
+                      Xem Thêm
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <h4 className="text-sm font-bold mt-2 line-clamp-1 text-center">
@@ -146,12 +149,14 @@ const PhimBo = async () => {
                       {movie.tmdb.vote_average}
                     </span>
                   </div>
-                  <Button
-                    size="sm"
-                    className="bg-yellow-500 text-black hover:bg-yellow-600"
-                  >
-                    Xem Thêm
-                  </Button>
+                  <Link href={`/chi-tiet/${movie.slug}`}>
+                    <Button
+                      size="sm"
+                      className="bg-yellow-500 text-black hover:bg-yellow-600"
+                    >
+                      Xem Thêm
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <h4 className="text-sm font-bold mt-2 line-clamp-1 text-center">
@@ -220,12 +225,14 @@ const TvShows = async () => {
                       {movie.tmdb.vote_average}
                     </span>
                   </div>
-                  <Button
-                    size="sm"
-                    className="bg-yellow-500 text-black hover:bg-yellow-600"
-                  >
-                    Xem Thêm
-                  </Button>
+                  <Link href={`/chi-tiet/${movie.slug}`}>
+                    <Button
+                      size="sm"
+                      className="bg-yellow-500 text-black hover:bg-yellow-600"
+                    >
+                      Xem Thêm
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <h4 className="text-sm font-bold mt-2 line-clamp-1 text-center">
@@ -294,12 +301,14 @@ const HoatHinh = async () => {
                       {movie.tmdb.vote_average}
                     </span>
                   </div>
-                  <Button
-                    size="sm"
-                    className="bg-yellow-500 text-black hover:bg-yellow-600"
-                  >
-                    Xem Thêm
-                  </Button>
+                  <Link href={`/chi-tiet/${movie.slug}`}>
+                    <Button
+                      size="sm"
+                      className="bg-yellow-500 text-black hover:bg-yellow-600"
+                    >
+                      Xem Thêm
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <h4 className="text-sm font-bold mt-2 line-clamp-1 text-center">

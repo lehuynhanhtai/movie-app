@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import useCarousel from "@/hooks/useCarousel";
+import Link from "next/link";
 
 export function Banner({ hotMovie }: any) {
   const { setApi } = useCarousel({ autoSlide: true });
@@ -48,9 +49,11 @@ export function Banner({ hotMovie }: any) {
                         <span className="ml-1">{movie.tmdb.vote_average}</span>
                       </div>
                     </div>
-                    <Button className="bg-yellow-500 text-black hover:bg-yellow-600">
-                      Xem ngay
-                    </Button>
+                    <Link href={`/chi-tiet/${movie.slug}`}>
+                      <Button className="bg-yellow-500 text-black hover:bg-yellow-600">
+                        Xem ngay
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

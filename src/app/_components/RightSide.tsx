@@ -9,7 +9,7 @@ async function RightSide({ className }: { className?: string }) {
   const data = await fetchNewsMovies({
     params: { page: 1, category: "", country: "", year: "" },
   });
-  // console.log(data.items);
+
   return (
     <section className={className}>
       <div className="">
