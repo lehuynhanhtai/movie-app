@@ -21,7 +21,7 @@ function HotMovie({ upcomingMovies }: any) {
               variant="link"
               className="text-yellow-500 hover:text-yellow-600"
             >
-              View All <ChevronRight className="ml-2 h-4 w-4" />
+              Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
           <Carousel
@@ -33,7 +33,7 @@ function HotMovie({ upcomingMovies }: any) {
             <CarouselContent>
               {upcomingMovies?.items?.map((movie: any) => (
                 <CarouselItem
-                  key={movie.id}
+                  key={movie._id}
                   className="relative basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-1/6"
                 >
                   <div className="absolute top-2 z-10 flex flex-col gap-1">
@@ -48,7 +48,7 @@ function HotMovie({ upcomingMovies }: any) {
                   </div>
                   <div className="group relative rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <Image
-                      src={`https://img.ophim.live/uploads/movies/${movie.poster_url}`}
+                      src={`${process.env.NEXT_PUBLIC_IMG_URL + movie.poster_url}`}
                       alt={movie.slug}
                       className="w-auto h-[300px] object-cover"
                       width={400}

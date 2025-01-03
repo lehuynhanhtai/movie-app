@@ -69,7 +69,9 @@ export function Header({
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8">
-            <h1 className="text-2xl font-bold text-yellow-500">Chill.Phim</h1>
+            <Link href={"/"}>
+              <h1 className="text-2xl font-bold text-yellow-500">Chill.Phim</h1>
+            </Link>
             <nav className="hidden lg:flex items-center space-x-6">
               {menuItems.map((item) => {
                 if (item.childItems) {
