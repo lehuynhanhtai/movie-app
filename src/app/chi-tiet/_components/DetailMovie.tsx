@@ -149,7 +149,7 @@ export default function MovieDetails({ fetDetailMovie }: any) {
       </div>
       {/* Content Description */}
       <Card className="bg-gray-900 border-gray-800">
-        <CardContent className="p-4">
+        <CardContent className="p-4 flex flex-col gap-2 justify-around">
           <div className="flex items-center gap-2 mb-4">
             <h2 className="font-semibold text-pink-500">Nội Dung Phim</h2>
           </div>
@@ -161,7 +161,7 @@ export default function MovieDetails({ fetDetailMovie }: any) {
           />
           <Button
             variant="ghost"
-            className="text-pink-500 mt-2 p-0 h-auto hover:text-pink-400"
+            className="text-pink-500 h-auto hover:text-pink-400 w-fit p-0"
             onClick={toggleExpand}
           >
             {isExpanded ? "Thu gọn" : "Mở rộng"}
@@ -196,13 +196,11 @@ export default function MovieDetails({ fetDetailMovie }: any) {
                   </h2>
                 </div>
                 <div className="grid grid-cols-6 md:grid-cols-10 gap-2">
-                  {server.server_data?.length ? (
-                    server.server_data?.map((episode: any, index: number) => (
-                      <Button key={episode.name}>{episode.name}</Button>
-                    ))
-                  ) : (
-                    <></>
-                  )}
+                  {server.server_data?.map((episode: any, index: number) => (
+                    <Button disabled={episode.name === ""} key={episode.name}>
+                      {episode.name}
+                    </Button>
+                  ))}
                 </div>
               </CardContent>
             </Card>

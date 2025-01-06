@@ -18,12 +18,14 @@ function HotMovie({ upcomingMovies }: any) {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-2xl font-bold capitalize">Phim sắp chiếu</h3>
-            <Button
-              variant="link"
-              className="text-yellow-500 hover:text-yellow-600"
-            >
-              Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href={`/danh-sach/${upcomingMovies.type_list}`}>
+              <Button
+                variant="link"
+                className="text-yellow-500 hover:text-yellow-600"
+              >
+                Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
           <Carousel
             opts={{

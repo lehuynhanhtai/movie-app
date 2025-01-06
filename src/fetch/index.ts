@@ -188,3 +188,14 @@ export const fetchMovieDetail = async (slug: string) => {
     throw error;
   }
 };
+
+export const fetchListMovie = async (slug: string) => {
+  try {
+    const response = await axios.get(`/api/danh-sach/${slug}`);
+    const data = await response.data;
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching movie detail:", error);
+    throw error;
+  }
+};

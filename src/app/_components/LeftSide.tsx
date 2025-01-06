@@ -29,12 +29,14 @@ const PhimLe = async () => {
     <div>
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-2xl font-bold">Phim Lẻ</h3>
-        <Button
-          variant="link"
-          className="text-yellow-500 hover:text-yellow-600"
-        >
-          Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link href={`/danh-sach/${data.type_list}`}>
+          <Button
+            variant="link"
+            className="text-yellow-500 hover:text-yellow-600"
+          >
+            Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
         {data.items.map((movie: any) => (
@@ -105,12 +107,14 @@ const PhimBo = async () => {
     <div>
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-2xl font-bold">Phim Bộ</h3>
-        <Button
-          variant="link"
-          className="text-yellow-500 hover:text-yellow-600"
-        >
-          Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link href={`/danh-sach/${data.type_list}`}>
+          <Button
+            variant="link"
+            className="text-yellow-500 hover:text-yellow-600"
+          >
+            Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
         {data.items.map((movie: any) => (
@@ -181,12 +185,14 @@ const TvShows = async () => {
     <div>
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-2xl font-bold">Tv Shows</h3>
-        <Button
-          variant="link"
-          className="text-yellow-500 hover:text-yellow-600"
-        >
-          Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link href={`/danh-sach/${data.type_list}`}>
+          <Button
+            variant="link"
+            className="text-yellow-500 hover:text-yellow-600"
+          >
+            Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
         {data.items.map((movie: any) => (
@@ -257,12 +263,14 @@ const HoatHinh = async () => {
     <div>
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-2xl font-bold">Hoạt Hình</h3>
-        <Button
-          variant="link"
-          className="text-yellow-500 hover:text-yellow-600"
-        >
-          Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link href={`/danh-sach/${data.type_list}`}>
+          <Button
+            variant="link"
+            className="text-yellow-500 hover:text-yellow-600"
+          >
+            Xem thêm <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
         {data.items.map((movie: any) => (
