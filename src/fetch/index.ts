@@ -189,9 +189,23 @@ export const fetchMovieDetail = async (slug: string) => {
   }
 };
 
-export const fetchListMovie = async (slug: string) => {
+export const fetchListMovie = async ({
+  slug,
+  params,
+}: {
+  slug: string;
+  params: {
+    page: number;
+    category: string | null;
+    country: string | null;
+    year: string | null;
+    // sort_field: string | null;
+  };
+}) => {
   try {
-    const response = await axios.get(`/api/danh-sach/${slug}`);
+    const response = await axios.get(
+      `/api/danh-sach/${slug}?${buildQuery(params)}`,
+    );
     const data = await response.data;
     return data.data;
   } catch (error) {

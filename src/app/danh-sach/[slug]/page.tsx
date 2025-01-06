@@ -1,41 +1,36 @@
 import RightSide from "@/app/_components/RightSide";
 import ListMovies from "@/app/chi-tiet/_components/ListMovies";
 import { fetchListMovie } from "@/fetch";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import FilterBar from "../_components/FilterGroup";
+import PaginationControls from "../_components/PanigationControls";
 
-const ListMovie = async ({ params }: { params: { slug: string } }) => {
-  const data = await fetchListMovie(params.slug);
+const ListMovie = async ({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { [key: string]: string };
+}) => {
+  // Lấy giá trị page từ query string
+  const page = parseInt(searchParams.page || "1", 10); // Mặc định là 1 nếu không có page
+  const category = searchParams.category || ""; // Mặc định là chuỗi rỗng
+  const country = searchParams.country || ""; // Mặc định là chuỗi rỗng
+  const year = searchParams.year || ""; // Mặc định là chuỗi rỗng
+
+  const data = await fetchListMovie({
+    slug: params.slug,
+    params: { page, category, country, year },
+  });
+
+  const pagination = data.params.pagination;
+
   return (
     <main className="container px-4 mx-auto space-y-5">
       <FilterBar />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-14">
           <ListMovies data={data} />
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" className="bg-yellow-700" />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="#" className="bg-yellow-700" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+          <PaginationControls pagination={pagination} />
         </div>
         <RightSide className="lg:col-span-1" />
       </div>
