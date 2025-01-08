@@ -199,7 +199,7 @@ export const fetchListMovie = async ({
     category: string | null;
     country: string | null;
     year: string | null;
-    // sort_field: string | null;
+    sort_field: string | null;
   };
 }) => {
   try {
