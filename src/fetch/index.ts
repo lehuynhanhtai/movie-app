@@ -213,3 +213,14 @@ export const fetchListMovie = async ({
     throw error;
   }
 };
+
+export const fetchOneMovie = async ({ slug }: { slug: string }) => {
+  try {
+    const response = await axios.get(`/api/phim/${slug}`);
+    const data = await response.data;
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching movie detail:", error);
+    throw error;
+  }
+};

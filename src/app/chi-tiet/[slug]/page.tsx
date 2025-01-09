@@ -19,7 +19,7 @@ const DeTail = async ({ params }: { params: { slug: string } }) => {
   return (
     <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 py-10">
       <div className="lg:col-span-2 space-y-14">
-        <MovieDetails fetDetailMovie={fetDetailMovie} />
+        <MovieDetails fetDetailMovie={fetDetailMovie} slug={params.slug} />
         <RecomentMovie hotMovie={hotMovie} />
       </div>
       <RightSide className="lg:col-span-1" />

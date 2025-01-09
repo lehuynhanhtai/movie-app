@@ -6,9 +6,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-export default function MovieDetails({ fetDetailMovie }: any) {
+export default function MovieDetails({ fetDetailMovie, slug }: any) {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   const toggleExpand = () => {
@@ -16,27 +17,33 @@ export default function MovieDetails({ fetDetailMovie }: any) {
   };
 
   const servers = fetDetailMovie.data.item.episodes;
+  console.log(servers);
 
   return (
     <div className={`max-w-6xl mx-auto space-y-10`}>
       <div className="grid md:grid-cols-[300px,1fr] gap-6">
         {/* Poster */}
-        <div className="relative">
-          <Card className="w-full h-[450px] bg-gray-800 overflow-hidden">
-            <Image
-              src={
-                process.env.NEXT_PUBLIC_IMG_URL +
-                fetDetailMovie.data.item.thumb_url
-              }
-              alt={fetDetailMovie.data.item.slug}
-              width={300}
-              height={450}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2">
-              <Button className="w-full bg-yellow-600 hover:bg-yellow-700">
-                Xem phim
-              </Button>
+        <div>
+          <Card className="bg-gray-800 overflow-hidden">
+            <div className="relative">
+              <Image
+                src={
+                  process.env.NEXT_PUBLIC_IMG_URL +
+                  fetDetailMovie.data.item.thumb_url
+                }
+                alt={fetDetailMovie.data.item.slug}
+                width={300}
+                height="450"
+                className="w-full object-cover"
+              />
+              <Link
+                href={`/xem-phim/${fetDetailMovie.data.item.slug}/tap-${servers[0].server_data[0].name}`}
+                className="absolute bottom-0 left-0 right-0 p-4 space-y-2"
+              >
+                <Button className="w-full bg-yellow-600 hover:bg-yellow-700">
+                  Xem phim
+                </Button>
+              </Link>
             </div>
           </Card>
         </div>
@@ -78,7 +85,7 @@ export default function MovieDetails({ fetDetailMovie }: any) {
                 Thể loại:{" "}
                 {fetDetailMovie.data.item.category.map((category: any) => (
                   <span key={category.id} className="text-gray-200">
-                    {category.name}
+                    {category.name},{" "}
                   </span>
                 ))}
               </p>
@@ -196,9 +203,18 @@ export default function MovieDetails({ fetDetailMovie }: any) {
                   </h2>
                 </div>
                 <div className="grid grid-cols-6 md:grid-cols-10 gap-2">
-                  {server.server_data?.map((episode: any, index: number) => (
-                    <Button disabled={episode.name === ""} key={episode.name}>
-                      {episode.name}
+                  {server.server_data?.map((episode: any) => (
+                    <Button
+                      disabled={episode.name === ""}
+                      key={episode.name}
+                      className="p-0"
+                    >
+                      <Link
+                        href={`/xem-phim/${slug}/tap-${episode.name}`}
+                        className="w-full"
+                      >
+                        {episode.name}
+                      </Link>
                     </Button>
                   ))}
                 </div>
