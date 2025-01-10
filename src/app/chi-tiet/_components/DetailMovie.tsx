@@ -17,7 +17,6 @@ export default function MovieDetails({ fetDetailMovie, slug }: any) {
   };
 
   const servers = fetDetailMovie.data.item.episodes;
-  console.log(servers);
 
   return (
     <div className={`max-w-6xl mx-auto space-y-10`}>

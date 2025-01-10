@@ -9,6 +9,7 @@ import { useServer } from "../contexts/ServerContext";
 
 export default function TabServer({ data, slug }: any) {
   const { currentServer, setCurrentServer } = useServer();
+  const episodeMovie = slug.replace("tap-", "");
 
   return (
     <Tabs
@@ -48,7 +49,7 @@ export default function TabServer({ data, slug }: any) {
                     key={episode.name}
                     className={cn(
                       "hover:bg-yellow-500 hover:text-black",
-                      slug.includes(episode.slug) ? "bg-yellow-500" : "", // Kiểm tra episode.name tồn tại trong slug
+                      episodeMovie === episode.slug ? "bg-yellow-500" : "", // Kiểm tra episode.name tồn tại trong slug
                     )}
                   >
                     <Link

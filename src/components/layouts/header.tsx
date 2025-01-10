@@ -24,18 +24,22 @@ export function Header({
     {
       id: 1,
       name: "Phim lẻ",
+      href: "/danh-sach/phim-le",
     },
     {
       id: 2,
       name: "Phim bộ",
+      href: "/danh-sach/phim-bo",
     },
     {
       id: 3,
       name: "TV Show",
+      href: "/danh-sach/tv-shows",
     },
     {
       id: 4,
       name: "Hoạt Hình",
+      href: "/danh-sach/hoat-hinh",
     },
     {
       id: 5,
@@ -107,7 +111,7 @@ export function Header({
                 return (
                   <Link
                     key={item.id}
-                    href="#"
+                    href={item.href}
                     className="hover:text-yellow-500 transition-colors"
                   >
                     {item.name}

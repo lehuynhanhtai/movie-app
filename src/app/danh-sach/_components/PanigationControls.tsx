@@ -85,7 +85,7 @@ const PaginationControls = ({ pagination }: PaginationProps) => {
 
   return (
     <Pagination>
-      <PaginationContent>
+      <PaginationContent className="hidden sm:flex">
         {/* Previous button */}
         {currentPageFromUrl > 1 && (
           <PaginationItem>
@@ -143,6 +143,27 @@ const PaginationControls = ({ pagination }: PaginationProps) => {
         )}
 
         {/* Next button */}
+        {currentPageFromUrl < totalPages && (
+          <PaginationItem>
+            <PaginationNext
+              href={`${pathname}?${createQueryString(currentPageFromUrl + 1)}`}
+            />
+          </PaginationItem>
+        )}
+      </PaginationContent>
+      <PaginationContent className="sm:hidden">
+        {currentPageFromUrl > 1 && (
+          <PaginationItem>
+            <PaginationPrevious
+              href={`${pathname}?${createQueryString(currentPageFromUrl - 1)}`}
+            />
+          </PaginationItem>
+        )}
+
+        <PaginationItem>
+          {`${currentPageFromUrl} / ${totalPages}`}
+        </PaginationItem>
+
         {currentPageFromUrl < totalPages && (
           <PaginationItem>
             <PaginationNext
