@@ -249,3 +249,28 @@ export const fetchMovieByCategory = async ({
     throw error;
   }
 };
+
+export const fetchMovieByCountry = async ({
+  slug,
+  params,
+}: {
+  slug: string;
+  params: {
+    page: number;
+    category: string | null;
+    country: string | null;
+    year: string | null;
+    sort_field: string | null;
+  };
+}) => {
+  try {
+    const response = await axios.get(
+      `/api/quoc-gia/${slug}?${buildQuery(params)}`,
+    );
+    const data = await response.data;
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching movie detail:", error);
+    throw error;
+  }
+};

@@ -1,8 +1,8 @@
-import { fetchMovieByCategory } from "@/fetch";
-import MovieByCategory from "../_components/MovieByCategory";
 import PaginationControls from "@/app/danh-sach/_components/PanigationControls";
+import { fetchMovieByCountry } from "@/fetch";
+import MovieByCountry from "../_components/MovieByCountry";
 
-export default async function TheLoaiPage({
+export default async function MovieQuocGiaPage({
   params,
   searchParams,
 }: {
@@ -15,18 +15,17 @@ export default async function TheLoaiPage({
   const year = searchParams.year || ""; // Mặc định là chuỗi rỗng
   const sort_field = searchParams.sort_field || "";
 
-  const movieByCate = await fetchMovieByCategory({
-    params: { page, category, country, year, sort_field },
+  const movieByCountry = await fetchMovieByCountry({
     slug: params.slug,
+    params: { page, category, country, year, sort_field },
   });
-
   return (
     <main className="container mx-auto px-4 space-y-10 py-5">
       <h1 className="text-2xl font-bold text-yellow-500 text-center">
-        LỌC PHIM THEO THỂ LOẠI
+        LỌC PHIM THEO QUỐC GIA
       </h1>
-      <MovieByCategory movieByCate={movieByCate} />
-      <PaginationControls pagination={movieByCate.params.pagination} />
+      <MovieByCountry movieByCountry={movieByCountry} />
+      <PaginationControls pagination={movieByCountry.params.pagination} />
     </main>
   );
 }

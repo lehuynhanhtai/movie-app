@@ -44,11 +44,13 @@ export function Header({
     {
       id: 5,
       name: "Thể loại",
+      type: "the-loai",
       childItems: categories.data.items,
     },
     {
       id: 6,
       name: "Quốc gia",
+      type: "quoc-gia",
       childItems: countries?.data?.items,
     },
   ];
@@ -68,12 +70,16 @@ export function Header({
     return openMenuIds.includes(menuId);
   };
 
+  const getItemHref = (menuType: string, slug: string) => {
+    return `/${menuType}/${slug}`;
+  };
+
   return (
     <header className="sticky top-0 w-full bg-black/95 backdrop-blur-sm z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8">
-            <Link href={"/"}>
+            <Link href="/">
               <h1 className="text-2xl font-bold text-yellow-500">Chill.Phim</h1>
             </Link>
             <nav className="hidden lg:flex items-center space-x-6">
@@ -96,7 +102,7 @@ export function Header({
                               className="hover:text-yellow-500"
                             >
                               <Link
-                                href={`/the-loai/${child.slug}`}
+                                href={getItemHref(item.type!, child.slug)}
                                 className="w-full"
                               >
                                 {child.name}
@@ -126,7 +132,7 @@ export function Header({
               <Input
                 type="search"
                 placeholder="Search movies..."
-                className=" w-full bg-gray-900 border-gray-700"
+                className="w-full bg-gray-900 border-gray-700"
               />
               <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
             </div>
@@ -140,7 +146,6 @@ export function Header({
             </Button>
           </div>
         </div>
-
         {isMenuOpen && (
           <div className="lg:hidden py-5 bg-black/95 max-h-[calc(100vh-4rem)] overflow-y-auto">
             <nav className="flex flex-col space-y-4 container mx-auto">
@@ -164,7 +169,7 @@ export function Header({
                           {item.childItems?.map((child) => (
                             <Link
                               key={child._id}
-                              href={`/the-loai/${child.slug}`}
+                              href={getItemHref(item.type!, child.slug)}
                               className="block hover:text-yellow-500 transition-colors"
                             >
                               {child.name}
@@ -178,7 +183,7 @@ export function Header({
                 return (
                   <Link
                     key={item.id}
-                    href="#"
+                    href={item.href}
                     className="hover:text-yellow-500 transition-colors"
                   >
                     {item.name}
