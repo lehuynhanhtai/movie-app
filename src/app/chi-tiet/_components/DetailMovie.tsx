@@ -3,20 +3,25 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import useDialog from "@/hooks/useDialog";
 import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import PopUpModal from "./PopupModal";
 
 export default function MovieDetails({ fetDetailMovie, slug }: any) {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const { open, handleToggleDialog } = useDialog();
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
 
   const servers = fetDetailMovie.data.item.episodes;
+  const episodeFirstMovie =
+    fetDetailMovie.data.item.episodes[0].server_data[0].name;
 
   return (
     <div className={`max-w-6xl mx-auto space-y-10`}>
@@ -35,14 +40,27 @@ export default function MovieDetails({ fetDetailMovie, slug }: any) {
                 height="450"
                 className="w-full object-cover"
               />
-              <Link
-                href={`/xem-phim/${fetDetailMovie.data.item.slug}/tap-${servers[0].server_data[0].name}`}
-                className="absolute bottom-0 left-0 right-0 p-4 space-y-2"
-              >
-                <Button className="w-full bg-yellow-600 hover:bg-yellow-700">
-                  Xem phim
+              <div className="absolute grid grid-cols-2 gap-5 bottom-0 left-0 right-0 p-4">
+                <Button
+                  onClick={handleToggleDialog}
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-700 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-yellow-800"
+                  disabled={fetDetailMovie.data.item.trailer_url === ""}
+                >
+                  Xem Trailer
                 </Button>
-              </Link>
+
+                <Button
+                  variant={"default"}
+                  className="w-full bg-yellow-600 hover:bg-yellow-700"
+                  disabled={episodeFirstMovie === ""}
+                >
+                  <Link
+                    href={`/xem-phim/${fetDetailMovie.data.item.slug}/tap-${servers[0].server_data[0].name}`}
+                  >
+                    Xem Phim
+                  </Link>
+                </Button>
+              </div>
             </div>
           </Card>
         </div>
@@ -120,7 +138,6 @@ export default function MovieDetails({ fetDetailMovie, slug }: any) {
               </div>
             </div>
           </div>
-
           <div>
             <h2 className="text-lg font-semibold mb-2">Diễn viên</h2>
             <p className="text-gray-400">
@@ -222,6 +239,11 @@ export default function MovieDetails({ fetDetailMovie, slug }: any) {
           </TabsContent>
         ))}
       </Tabs>
+      <PopUpModal
+        open={open}
+        handleToggle={handleToggleDialog}
+        data={fetDetailMovie.data.item}
+      />
     </div>
   );
 }
