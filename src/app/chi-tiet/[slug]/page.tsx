@@ -2,6 +2,20 @@ import { fetchHotMovies, fetchMovieDetail } from "@/fetch";
 import RightSide from "../../_components/RightSide";
 import MovieDetails from "../_components/DetailMovie";
 import RecomentMovie from "../_components/RecomentMovie";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const fetDetailMovie = await fetchMovieDetail(params.slug);
+  const currentMovie = fetDetailMovie.data.item;
+  return {
+    title: `Chill phim | ${currentMovie.origin_name} | ${currentMovie.name}`,
+    description: currentMovie.content.slice(0, 160),
+  };
+}
 
 const DeTail = async ({ params }: { params: { slug: string } }) => {
   const hotMovie = await fetchHotMovies({

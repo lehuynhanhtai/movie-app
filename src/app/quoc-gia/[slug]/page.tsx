@@ -1,6 +1,22 @@
 import PaginationControls from "@/app/danh-sach/_components/PanigationControls";
 import { fetchMovieByCountry } from "@/fetch";
 import MovieByCountry from "../_components/MovieByCountry";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const movieByCountry = await fetchMovieByCountry({
+    slug: params.slug,
+    params: { page: 1, category: "", country: "", year: "", sort_field: "" },
+  });
+  return {
+    title: `Chill phim | ${movieByCountry.seoOnPage.titleHead}`,
+    description: movieByCountry.seoOnPage.descriptionHead,
+  };
+}
 
 export default async function MovieQuocGiaPage({
   params,

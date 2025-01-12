@@ -18,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Chill Phim",
+  title: "Chill Phim | Xem phim miễn phí cùng Myth",
   description: "Xem phim miễn phí cùng Myth",
 };
 

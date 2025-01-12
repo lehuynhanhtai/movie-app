@@ -49,7 +49,9 @@ export default function TabServer({ data, slug }: any) {
                     key={episode.name}
                     className={cn(
                       "hover:bg-yellow-500 hover:text-black",
-                      episodeMovie === episode.slug ? "bg-yellow-500" : "", // Kiểm tra episode.name tồn tại trong slug
+                      episodeMovie === episode.slug || episode.name
+                        ? "bg-yellow-500"
+                        : "", // Kiểm tra episode.name tồn tại trong slug
                     )}
                   >
                     <Link

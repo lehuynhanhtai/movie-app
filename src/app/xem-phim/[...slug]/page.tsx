@@ -4,6 +4,21 @@ import RecomentMovie from "@/app/chi-tiet/_components/RecomentMovie";
 import ContentMovie from "../_components/ContentMovie";
 import TabServer from "../_components/TabServer";
 import { ServerProvider } from "../contexts/ServerContext";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const oneMovie = await fetchOneMovie({
+    slug: params.slug[0],
+  });
+  return {
+    title: `Chill phim | ${oneMovie.seoOnPage.titleHead}`,
+    description: oneMovie.seoOnPage.descriptionHead,
+  };
+}
 
 export default async function Movie({ params }: { params: { slug: string } }) {
   const movie = await fetchOneMovie({ slug: params.slug[0] });

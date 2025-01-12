@@ -3,6 +3,28 @@ import ListMovies from "@/app/chi-tiet/_components/ListMovies";
 import { fetchCategories, fetchCountries, fetchListMovie } from "@/fetch";
 import FilterBar from "../_components/FilterGroup";
 import PaginationControls from "../_components/PanigationControls";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const data = await fetchListMovie({
+    slug: params.slug,
+    params: {
+      page: 1,
+      category: "",
+      country: "",
+      year: "",
+      sort_field: "",
+    },
+  });
+  return {
+    title: `Chill phim | ${data.seoOnPage.titleHead}`,
+    description: data.seoOnPage.descriptionHead,
+  };
+}
 
 const ListMovie = async ({
   params,
