@@ -12,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IMenuItem, IMenuResponse } from "@/app/interfaces";
+import useDialog from "@/hooks/useDialog";
+import PopUpSeach from "../PopupSearch";
 
 export function Header({
   categories,
@@ -57,6 +59,7 @@ export function Header({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMenuIds, setOpenMenuIds] = useState<number[]>([]);
+  const { open, handleToggleDialog } = useDialog();
 
   const toggleMobileSubmenu = (menuId: number) => {
     setOpenMenuIds((prev) =>
@@ -128,14 +131,9 @@ export function Header({
           </div>
 
           <div>
-            <div className="relative hidden lg:block">
-              <Input
-                type="search"
-                placeholder="Search movies..."
-                className="w-full bg-gray-900 border-gray-700"
-              />
-              <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
-            </div>
+            <Button variant="ghost" size="icon" onClick={handleToggleDialog}>
+              <Search className="text-gray-400" />
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -202,6 +200,7 @@ export function Header({
           </div>
         )}
       </div>
+      <PopUpSeach open={open} handleToggleDialog={handleToggleDialog} />
     </header>
   );
 }
