@@ -52,7 +52,7 @@ async function RightSide({ className }: { className?: string }) {
             {data?.items.map((movie: any) => (
               <Link
                 key={movie._id}
-                href={`/movie/${movie._id}`}
+                href={`/chi-tiet/${movie.slug}`}
                 className="flex gap-4 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <Image
