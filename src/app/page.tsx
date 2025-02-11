@@ -29,7 +29,7 @@ export default async function Home() {
       <Banner hotMovie={hotMovie} />
       <HotMovie upcomingMovies={upcomingMovies} />
       <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <LeftSide className="lg:col-span-2" />
+        <LeftSide className="lg:col-span-2 " />
         <RightSide className="lg:col-span-1" />
       </div>
     </div>

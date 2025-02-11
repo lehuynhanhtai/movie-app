@@ -127,7 +127,7 @@ function Footer() {
           </div>
         </div>
         <p className="font-sans p-8 text-start md:text-center md:text-lg md:p-4">
-          © 2023 You Company Inc. All rights reserved.
+          © Created By Myth_Dev
         </p>
       </div>
     </footer>

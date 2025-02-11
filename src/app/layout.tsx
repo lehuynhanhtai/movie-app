@@ -5,6 +5,8 @@ import { Header } from "@/components/layouts/header";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Footer from "@/components/layouts/footer";
 import { fetchCategories, fetchCountries } from "@/fetch";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,7 +39,7 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <Header categories={categories} countries={countries} />
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
           <Footer />
         </ThemeProvider>
       </body>
